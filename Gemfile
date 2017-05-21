@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
-
+gem 'twitter-bootstrap-rails'
+gem 'devise'
+gem 'tzinfo-data'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
