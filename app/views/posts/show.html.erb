@@ -1,25 +1,35 @@
 
 <p id="notice"><%= notice %></p>
 
-<% if @post.user == current_user %>
-  <%= link_to 'Edit', edit_post_path(@post) %>
-  <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<div class="container">
+    <div class="row">
+        <% if @post.user == current_user %>
+            <div class="col-xs-6 text-left">
+                <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-default" %>
+            </div>
+            <div class="col-xs-6 text-right"> 
+                <%= button_to 'Delete', @post, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+            </div>
+        <% end %>
+    </div>
+    
+    
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user.email %>
-</p>
+    
+    <h1>
+    <strong>Title:</strong>
+        <%= @post.title %>
+    </h1>
+    <h3>
+        <strong>User:</strong>
+        <%= @post.user.email %>
+    </h3>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+    <p class="h4">
+        <%= @post.content %>
+    </p>
+    
+    
+    <%= link_to 'Back', posts_path, class: "btn btn-default"  %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-
-<%= link_to 'Back', posts_path %>
+</div>
