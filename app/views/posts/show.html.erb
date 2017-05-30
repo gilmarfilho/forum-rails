@@ -5,31 +5,37 @@
     <div class="row">
         <% if @post.user == current_user %>
             <div class="col-xs-6 text-left">
-                <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-default" %>
+                <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_post_path(@post) %>
             </div>
             <div class="col-xs-6 text-right"> 
                 <%= button_to 'Delete', @post, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
             </div>
         <% end %>
     </div>
-    
-    
 
+    <div class="row">    
+        <h1>
+        <strong>Title:</strong>
+            <%= @post.title %>
+        </h1>
+        <h3>
+            <strong>User:</strong>
+            <%= @post.user.email %>
+        </h3>
     
-    <h1>
-    <strong>Title:</strong>
-        <%= @post.title %>
-    </h1>
-    <h3>
-        <strong>User:</strong>
-        <%= @post.user.email %>
-    </h3>
-
-    <p class="h4">
-        <%= @post.content %>
-    </p>
+        <p class="h4">
+            <%= @post.content %>
+        </p>
+    </div>
+    <div class="row text-right">
+        <div class="btn-group " role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-success">Like</button>
+          <button type="button" class="btn btn-danger">Dislike</button>
+        </div>
+    </div>
     
-    
-    <%= link_to 'Back', posts_path, class: "btn btn-default"  %>
+    <div class="row">
+        <%= link_to 'Back', posts_path, class: "btn btn-default"  %>
+    </div>
 
 </div>
