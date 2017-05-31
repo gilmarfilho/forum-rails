@@ -15,7 +15,7 @@
             </h1>
         </div>
         <div class="col-sm-4 text-right">
-            <% if @post.user == current_user %>
+            <% if @post.user == current_user || is_admin() %>
                 <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_post_path(@post), class: "btn btn-default" %>
                 <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
             <% end %>
@@ -51,7 +51,7 @@
         <div class="panel-body">
          <h4><%= comment.user.email %> says:</h4>  <br>
          <h5><%= comment.content %></h5> <br>
-          <% if comment.user == current_user %>
+          <% if comment.user == current_user  || is_admin()%>
             <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default pull-right" %><br>
           <% end %>
         </div>
