@@ -43,7 +43,20 @@
                 </div>
             </div>
         </div>
-
-
   </div>
 </div>
+  <% unless @comments.nil? %>
+    <% @comments.each do |comment| %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+         <h4><%= comment.user.email %> says:</h4>  <br>
+         <h5><%= comment.content %></h5> <br>
+          <% if comment.user == current_user %>
+            <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default pull-right" %><br>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= render 'comments/form', locals: {comment: @comment}%>
