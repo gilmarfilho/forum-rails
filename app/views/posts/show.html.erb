@@ -2,36 +2,48 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-      <div class="row">
-        <% if @post.user == current_user %>
-          <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_post_path(@post), class: "btn btn-default" %>
-          <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
-        <% end %>
-      </div>
-    
-        <div class="row">    
+    <div class="row">
+        <div class="col-sm-12">
+        <%= link_to 'Back', posts_path, class: "btn btn-default"  %>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-sm-8">
             <h1>
-            <strong>Title:</strong>
+                <strong>Title:</strong>
                 <%= @post.title %>
             </h1>
-            <h3>
-                <strong>User:</strong>
-                <%= @post.user.email %>
-            </h3>
-        
-            <p class="h4">
-                <%= @post.content %>
-            </p>
         </div>
-        <div class="row text-right">
-            <div class="btn-group " role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-              <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+        <div class="col-sm-4 text-right">
+            <% if @post.user == current_user %>
+                <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_post_path(@post), class: "btn btn-default" %>
+                <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+            <% end %>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>
+                    <strong>User:</strong>
+                    <%= @post.user.email %>
+                </h3>
+            </div>
+            <div class="col-sm-12">
+                <p class="h4">
+                    <%= @post.content %>
+                </p>
             </div>
         </div>
-        
-        <div class="row">
-            <%= link_to 'Back', posts_path, class: "btn btn-default"  %>
+        <div class="row text-right">
+            <div class="col-sm-12">
+                <div class="btn-group " role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+                  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+                </div>
+            </div>
         </div>
+
+
   </div>
 </div>
