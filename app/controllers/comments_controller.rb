@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
 
   def index
-    @comments = Comment.all
+    @comments = Comment.all.page(params[:page]).per(10)
   end
 
   def show
