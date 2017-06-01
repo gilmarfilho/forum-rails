@@ -3,19 +3,19 @@
 </head>
 <p id="notice"><%= notice %></p>
 
-<h1>Recent Activity</h1>
+<h1 style="font-family: Arial; color: #070719;"><span class="glyphicon glyphicon-fire" style="color: #FF8000;"></span> Recent Activity</h1>
 
-<%= link_to 'New post', new_post_path, class: "btn btn-default pull-right" %>
+<%= link_to 'Post', new_post_path, class: "btn btn-default pull-right" %>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Post</th>
-      <th>Author</th>
-      <th>Likes</th>
-      <th>Viewed</th>
-      <th>Comments</th>
-      <th>Posted at</th>
+      <th></th>
+      <th><span class="glyphicon glyphicon-user"></span></th>
+      <th><span class="glyphicon glyphicon-thumbs-up"></span></th>
+      <th><span class="glyphicon glyphicon-eye-open"></span></th>
+      <th><span class="glyphicon glyphicon-comment"></span></th>
+      <th><span class="glyphicon glyphicon-time"></span></th>
     </tr>
   </thead>
 
