@@ -1,4 +1,7 @@
-<h1>New Post</h1>
+<%= gravatar_for current_user, size: 35 %>
+<%= current_user.email %>:
+
+<br><br>
 
 <%= render 'form' %>
 
