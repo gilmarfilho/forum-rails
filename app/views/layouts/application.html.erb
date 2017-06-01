@@ -27,7 +27,8 @@
               <li><%= link_to 'Change Password', edit_user_password_path %></li>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               <% else %>
-                <%= link_to 'Login', new_user_session_path, class: "btn btn-default", style: "margin-top: 10px" %>
+                
+                <%= link_to 'Login', new_user_session_path, class: "btn btn-info text-white", style: "margin-top: 10px" %>
               <% end %>
             </ul>
           </li>
