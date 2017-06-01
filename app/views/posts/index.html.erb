@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" type="text/css" href="mystyle.css">  
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <p id="notice"><%= notice %></p>
 
@@ -19,7 +19,11 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= link_to post.title, post, class: "btn-link h3" %></td>
+        <td>
+          <%= link_to post.title, post, class: "btn-link h3" %></br>
+          <span class="label label-primary">love</span>
+          <span class="label label-primary">thais</span>
+        </td>
         <td><%= gravatar_for post.user, size: 50 %></td>
         <td><%= post.created_at.to_date %></td>
       </tr>
