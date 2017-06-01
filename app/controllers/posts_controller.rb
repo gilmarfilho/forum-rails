@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = Comment.where(post_id: @post.id).order(:created_at)
+    @comments = Comment.where(post_id: @post.id).order(:created_at).page(params[:page]).per(5)
     @comment = Comment.new
     @comment.post = @post
   end
