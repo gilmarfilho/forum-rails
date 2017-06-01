@@ -10,7 +10,6 @@
         <div class="row">
         <div class="col-sm-8">
             <h1>
-                <strong>Title:</strong>
                 <%= @post.title %>
             </h1>
         </div>
@@ -24,13 +23,10 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <h3>
-                    <strong>User:</strong>
-                    <%= @post.user.email %>
-                </h3>
+               <img > <%= gravatar_for @post.user, size: 50 %></img>
             </div>
             <div class="col-sm-12">
-                <p class="h4">
+                <p class="h3">
                     <%= @post.content %>
                 </p>
             </div>
