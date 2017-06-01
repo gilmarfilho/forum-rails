@@ -40,8 +40,8 @@
           <%= link_to '<span class="glyphicon glyphicon-exclamation-sign"></span>'.html_safe, comment, data: { confirm: 'Are you sure?' }, class: "btn btn-warning pull-right" %>
          <h4>
            <div>
-             <img> <%= gravatar_for @post.user, size: 25 %></img>
-             <%= @post.user.email %>:
+             <img> <%= gravatar_for comment.user, size: 25 %></img>
+             <%= comment.user.email %>:
            </div>
           </h4>
           <br><br>

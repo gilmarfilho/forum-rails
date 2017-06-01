@@ -12,6 +12,9 @@
     <tr>
       <th>Post</th>
       <th>Author</th>
+      <th>Likes</th>
+      <th>Viewed</th>
+      <th>Comments</th>
       <th>Posted at</th>
     </tr>
   </thead>
@@ -24,7 +27,10 @@
           <span class="label label-primary">love</span>
           <span class="label label-primary">thais</span>
         </td>
-        <td><%= gravatar_for post.user, size: 50 %></td>
+        <td><%= gravatar_for post.user, size: 50 %>  <%= post.user.email %></td>
+        <td>3</td>
+        <td>21</td>
+        <td>7</td>
         <td><%= post.created_at.to_date %></td>
       </tr>
     <% end %>
