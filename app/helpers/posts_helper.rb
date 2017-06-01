@@ -1,7 +1,9 @@
 module PostsHelper
   #Verifies if the current user is admin
   def is_admin()
-    current_user.is_admin
+    if current_user
+      current_user.is_admin
+    end
   end
   #Gets a gravatar image
   def gravatar_for(user, size: 80)
