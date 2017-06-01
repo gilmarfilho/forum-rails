@@ -5,14 +5,15 @@
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= devise_error_messages! %>
   
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    <div class="field glyphicon glyphicon-user">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder:"Email" %>
     </div>
   
     <div class="actions">
       <%= f.submit "Send email", class: "btn btn-default" %>
     </div>
+    <br><em>We will send you an email in a few seconds</em>
   <% end %>
   
 </div>
