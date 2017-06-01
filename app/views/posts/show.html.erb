@@ -10,12 +10,11 @@
         <div class="row">
         <div class="col-sm-8">
             <h1>
-                <strong>Title:</strong>
                 <%= @post.title %>
             </h1>
         </div>
         <div class="col-sm-4 text-right">
-            <% if @post.user == current_user %>
+            <% if @post.user == current_user || is_admin() %>
                 <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_post_path(@post), class: "btn btn-default" %>
                 <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
             <% end %>
@@ -24,13 +23,10 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <h3>
-                    <strong>User:</strong>
-                    <%= @post.user.email %>
-                </h3>
+               <img > <%= gravatar_for @post.user, size: 50 %></img>
             </div>
             <div class="col-sm-12">
-                <p class="h4">
+                <p class="h3">
                     <%= @post.content %>
                 </p>
             </div>
@@ -51,7 +47,7 @@
         <div class="panel-body">
          <h4><%= comment.user.email %> says:</h4>  <br>
          <h5><%= comment.content %></h5> <br>
-          <% if comment.user == current_user %>
+          <% if comment.user == current_user  || is_admin()%>
             <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default pull-right" %><br>
           <% end %>
         </div>
