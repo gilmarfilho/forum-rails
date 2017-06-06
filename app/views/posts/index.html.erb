@@ -28,9 +28,9 @@
           <span class="label label-primary">new</span>
         </td>
         <td><%= gravatar_for post.user, size: 50 %>  <%= post.user.email %></td>
-        <td>3</td>
-        <td>21</td>
-        <td>7</td>
+        <td><%= post.likes %></td>
+        <td><%= post.views %></td>
+        <td><%= post.comments.size %></td>
         <td><%= post.created_at.to_date %></td>
       </tr>
     <% end %>

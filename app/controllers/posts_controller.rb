@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :like]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all.page(params[:page]).per(10)
+    @posts = Post.all.page(params[:page]).per(10).order(views: :desc)
   end
 
   def show
+    @post = set_post
+    @post.views = @post.views + 1
+    @post.save!
     @comments = Comment.where(post_id: @post.id).order(:created_at).page(params[:page]).per(5)
     @comment = Comment.new
     @comment.post = @post
@@ -18,7 +21,6 @@ class PostsController < ApplicationController
 
   def edit
   end
-
 
   def create
     @post = Post.new(post_params)
@@ -43,6 +45,18 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
+  end
+  
+  def like
+    @post = set_post
+    @post.likes = @post.likes + 1
+    @post.save!
+  end
+  
+  def dislike
+    @post = set_post
+    @post.likes = @post.likes - 1
+    @post.save!
   end
 
   private

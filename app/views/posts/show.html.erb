@@ -1,5 +1,25 @@
 <p id="notice"><%= notice %></p>
 
+<script>
+$(".like").click(function(){  
+  if ($(this).hasClass("like")){     
+    $.ajax({
+      type: "PUT",
+      url: "/posts/<%= @post.id %>/like"
+    });
+  }
+})
+
+$(".dislike").click(function(){  
+  if ($(this).hasClass("dislike")){     
+    $.ajax({
+      type: "PUT",
+      url: "/posts/<%= @post.id %>/dislike"
+    });
+  }
+})
+</script>
+
 <div class="panel panel-default">
   <div class="panel-body">
         <div class="row">
@@ -20,7 +40,7 @@
         <div class="row">
           <div class="col-sm-12">
             <p class="h3">
-              <%= @post.content %>
+              <%= simple_format @post.content %>
             </p>
             <br>
           </div>
@@ -28,8 +48,8 @@
         <img> <%= gravatar_for @post.user, size: 25 %></img>
         <%= @post.user.email %>
         <div class="pull-right">
-          <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span></button>
-          <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-thumbs-down"></span></button>
+          <button type="button" class="btn btn-success like"><span class="glyphicon glyphicon-thumbs-up"></span></button>
+          <button type="button" class="btn btn-danger dislike"><span class="glyphicon glyphicon-thumbs-down"></span></button>
         </div>
   </div>
 </div>
@@ -57,4 +77,4 @@
 
 <%= paginate @comments, theme:"twitter-bootstrap-3" %>
 
-  <%= render 'comments/form', locals: {comment: @comment}%>
+<%= render 'comments/form', locals: {comment: @comment}%>

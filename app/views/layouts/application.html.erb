@@ -6,7 +6,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
 <body>
 <nav class="navbar navbar-default">
@@ -15,7 +14,6 @@
     <div class="navbar-header">
       <%= link_to image_tag("icon.png", size: "28x28"), root_path, class: "navbar-brand" %>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <div style= "margin-top: 10px">
@@ -25,14 +23,14 @@
             <li><input class="form-control mr-sm-2" type="text" placeholder="Search"></li>
             <li><button class="btn btn-primary my-2 my-sm-0" type="submit" style="margin-right: 15px;"><span class="glyphicon glyphicon-search"></span></button></li>
             <% if user_signed_in? %>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <%= current_user.email %>
-                  <%= gravatar_for current_user, size: 35 %><span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Change Password', edit_user_password_path %></li>
-                  <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-                </ul>
+            <%= gravatar_for current_user, size: 35 %>
+              <a href="#" class="dropdown-toggle btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.email %><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'My Account', edit_user_registration_path %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+              </ul>
               </li>
             <% else %>
               <%= link_to 'Login', new_user_session_path, class: "btn btn-default" %>
