@@ -12,12 +12,4 @@ module PostsHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag(gravatar_url, alt: user.email, class: "gravatar img-circle")
   end
-  
-  def likes(post)
-    Evaluation.where(post_id: post.id, user_id: post.user, like: true).count
-  end
-  
-  def dislikes(post)
-    Evaluation.where(post_id: post.id, user_id: post.user, dislike: true).count
-  end
 end

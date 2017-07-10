@@ -2,17 +2,15 @@
 
 <script>
 $("#like").click(function(){
-  var post = <% @post.id %>
-  alert(post);
-  <% if true %>
-    $.ajax({url: "/posts/@post.id/like"}, type: 'PUT');
-  <% else %>
-    alert("Ok");
-  <% end %>
+  var likesNumber = document.getElementById("likesNumber").innerHTML;
+  var likesNumber = parseInt(likesNumber) + 1
+  document.getElementById("likesNumber").innerHTML = likesNumber;
 });
 
 $("#dislike").click(function(){
-  alert("dislike");
+  var dislikesNumber = document.getElementById("dislikesNumber").innerHTML;
+  var dislikesNumber = parseInt(dislikesNumber) + 1
+  document.getElementById("dislikesNumber").innerHTML = dislikesNumber;
 });
 </script>
 
@@ -43,10 +41,18 @@ $("#dislike").click(function(){
     <img> <%= gravatar_for @post.user, size: 25 %></img>
     <%= @post.user.email %>
     <div class="pull-right">
-      <span><%= likes(@post) %></span>
-      <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, like_post_path(@post), method: :put, remote: true, class: 'btn btn-success' %>
-      <span><%= dislikes(@post) %></span>
-      <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, dislike_post_path(@post), method: :put, remote: true, class: 'btn btn-danger' %>
+      <span id="likesNumber"><%= likes(@post) %></span>
+      <% if !already_liked(@post) %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, like_post_path(@post), method: :put, remote: true, id: "like", class: 'btn btn-success' %>
+      <% else %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, '#', class: 'btn btn-success disabled' %>
+      <% end %>
+      <span id="dislikesNumber"><%= dislikes(@post) %></span>
+      <% if !already_disliked(@post) %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, dislike_post_path(@post), method: :put, remote: true, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, '#', class: 'btn btn-danger disabled' %>
+      <% end %>
     </div>
   </div>
 </div>

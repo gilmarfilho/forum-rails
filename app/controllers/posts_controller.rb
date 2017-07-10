@@ -63,7 +63,6 @@ class PostsController < ApplicationController
   def dislike
     if Evaluation.exists?(user: current_user, post: @post)
       @evaluation = Evaluation.where(user: current_user, post: @post)
-      byebug
     else
       @evaluation = Evaluation.new
       @evaluation.user = current_user
