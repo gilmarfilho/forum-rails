@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :like]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :like, :dislike]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :dislike]
 
   def index
     @posts = Post.all.page(params[:page]).per(10).order(views: :desc)
   end
 
   def show
-    @post = set_post
+    @user = current_user
     @post.views = @post.views + 1
     @post.save!
     @comments = Comment.where(post_id: @post.id).order(:created_at).page(params[:page]).per(5)
@@ -48,15 +48,30 @@ class PostsController < ApplicationController
   end
   
   def like
-    @post = set_post
-    @post.likes = @post.likes + 1
-    @post.save!
+    if Evaluation.exists?(user: current_user, post: @post)
+      @evaluation = Evaluation.where(user: current_user, post: @post)
+    else
+      @evaluation = Evaluation.new
+      @evaluation.user = current_user
+      @evaluation.post = @post
+    end
+    @evaluation.dislike = false
+    @evaluation.like = true
+    @evaluation.save!
   end
   
   def dislike
-    @post = set_post
-    @post.likes = @post.likes - 1
-    @post.save!
+    if Evaluation.exists?(user: current_user, post: @post)
+      @evaluation = Evaluation.where(user: current_user, post: @post)
+      byebug
+    else
+      @evaluation = Evaluation.new
+      @evaluation.user = current_user
+      @evaluation.post = @post
+    end
+    @evaluation.like = false
+    @evaluation.dislike = true
+    @evaluation.save!
   end
 
   private

@@ -13,6 +13,7 @@
       <th></th>
       <th><span class="glyphicon glyphicon-user"></span></th>
       <th><span class="glyphicon glyphicon-thumbs-up"></span></th>
+      <th><span class="glyphicon glyphicon-thumbs-down"></span></th>
       <th><span class="glyphicon glyphicon-eye-open"></span></th>
       <th><span class="glyphicon glyphicon-comment"></span></th>
       <th><span class="glyphicon glyphicon-time"></span></th>
@@ -28,10 +29,12 @@
           <span class="label label-primary">new</span>
         </td>
         <td><%= gravatar_for post.user, size: 50 %>  <%= post.user.email %></td>
-        <td><%= post.likes %></td>
+        <td><%= likes(post) %></td>
+        <td><%= dislikes(post) %></td>
         <td><%= post.views %></td>
         <td><%= post.comments.size %></td>
         <td><%= post.created_at.to_date %></td>
+
       </tr>
     <% end %>
   </tbody>

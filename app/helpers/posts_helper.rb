@@ -5,10 +5,19 @@ module PostsHelper
       current_user.is_admin
     end
   end
+  
   #Gets a gravatar image
   def gravatar_for(user, size: 80)
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.email, class: "gravatar")
+    image_tag(gravatar_url, alt: user.email, class: "gravatar img-circle")
+  end
+  
+  def likes(post)
+    Evaluation.where(post_id: post.id, user_id: post.user, like: true).count
+  end
+  
+  def dislikes(post)
+    Evaluation.where(post_id: post.id, user_id: post.user, dislike: true).count
   end
 end
