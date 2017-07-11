@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :like, :dislike]
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :dislike]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :dislike, :unlike, :undislike]
 
   def index
     @posts = Post.all.page(params[:page]).per(10).order(views: :desc)
@@ -41,7 +41,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   def destroy
     @post.destroy
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
@@ -49,28 +48,34 @@ class PostsController < ApplicationController
   
   def like
     if Evaluation.exists?(user: current_user, post: @post)
-      @evaluation = Evaluation.where(user: current_user, post: @post)
-    else
-      @evaluation = Evaluation.new
-      @evaluation.user = current_user
-      @evaluation.post = @post
+      @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
     end
+    @evaluation = Evaluation.new
+    @evaluation.user = current_user
+    @evaluation.post = @post
     @evaluation.dislike = false
     @evaluation.like = true
     @evaluation.save!
   end
   
+  def unlike
+    @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
+  end
+  
   def dislike
     if Evaluation.exists?(user: current_user, post: @post)
-      @evaluation = Evaluation.where(user: current_user, post: @post)
-    else
-      @evaluation = Evaluation.new
-      @evaluation.user = current_user
-      @evaluation.post = @post
+      @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
     end
+    @evaluation = Evaluation.new
+    @evaluation.user = current_user
+    @evaluation.post = @post
     @evaluation.like = false
     @evaluation.dislike = true
     @evaluation.save!
+  end
+  
+  def undislike
+    @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
   end
 
   private

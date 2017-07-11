@@ -7,9 +7,21 @@ $("#like").click(function(){
   document.getElementById("likesNumber").innerHTML = likesNumber;
 });
 
+$("#unlike").click(function(){
+  var likesNumber = document.getElementById("likesNumber").innerHTML;
+  var likesNumber = parseInt(likesNumber) - 1
+  document.getElementById("likesNumber").innerHTML = likesNumber;
+});
+
 $("#dislike").click(function(){
   var dislikesNumber = document.getElementById("dislikesNumber").innerHTML;
   var dislikesNumber = parseInt(dislikesNumber) + 1
+  document.getElementById("dislikesNumber").innerHTML = dislikesNumber;
+});
+
+$("#undislike").click(function(){
+  var dislikesNumber = document.getElementById("dislikesNumber").innerHTML;
+  var dislikesNumber = parseInt(dislikesNumber) - 1
   document.getElementById("dislikesNumber").innerHTML = dislikesNumber;
 });
 </script>
@@ -45,13 +57,13 @@ $("#dislike").click(function(){
       <% if !already_liked(@post) %>
         <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, like_post_path(@post), method: :put, remote: true, id: "like", class: 'btn btn-success' %>
       <% else %>
-        <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, '#', class: 'btn btn-success disabled' %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, unlike_post_path(@post), method: :put, remote: true, id: "unlike", class: 'btn btn-success' %>
       <% end %>
       <span id="dislikesNumber"><%= dislikes(@post) %></span>
       <% if !already_disliked(@post) %>
-        <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, dislike_post_path(@post), method: :put, remote: true, class: 'btn btn-danger' %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, dislike_post_path(@post), method: :put, remote: true, id: "dislike", class: 'btn btn-danger' %>
       <% else %>
-        <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, '#', class: 'btn btn-danger disabled' %>
+        <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, undislike_post_path(@post), method: :put, remote: true, id: "undislike", class: 'btn btn-danger' %>
       <% end %>
     </div>
   </div>
