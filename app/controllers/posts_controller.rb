@@ -3,7 +3,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :dislike, :unlike, :undislike]
 
   def index
-    @posts = Post.all.page(params[:page]).per(10).order(views: :desc)
+    @posts = Post.all
+    if params[:search]
+      @posts = Post.search(params[:search]).page(params[:page]).per(10).order(views: :desc)
+    else
+      @posts = Post.all.page(params[:page]).per(10).order(views: :desc)
+    end
   end
 
   def show
