@@ -1,5 +1,4 @@
 class ReportsController < ApplicationController
-  before_action :is_admin!, only: [:destroy]
   before_action :set_report, only: [:destroy]
 
   def index

@@ -83,7 +83,7 @@ $(function () {
   <% @comments.each do |comment| %>
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= link_to '<span class="glyphicon glyphicon-exclamation-sign"></span>'.html_safe, comment, data: { confirm: 'Are you sure?' }, class: "btn btn-warning pull-right" %>
+        <%#= link_to '<span class="glyphicon glyphicon-exclamation-sign"></span>'.html_safe, comment, data: { confirm: 'Are you sure?' }, class: "btn btn-warning pull-right" %>
        <h4>
          <div>
            <img> <%= gravatar_for comment.user, size: 25 %></img>

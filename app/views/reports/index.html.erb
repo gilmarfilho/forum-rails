@@ -10,6 +10,7 @@
     <tr>
       <th>Report</span></th>
       <th>Who reported</th>
+      <th>Delete report</th>
     </tr>
   </thead>
 
@@ -24,6 +25,7 @@
           <% end %>
         </td>
         <td><%= gravatar_for report.user, size: 50 %>  <%= report.user.email %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, report, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
       </tr>
     <% end %>
   </tbody>
