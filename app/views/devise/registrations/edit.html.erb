@@ -8,10 +8,9 @@
       <%= f.label :name %>
       <%= f.text_field :nameUsers, autofocus: true,class: "form-control", placeholder: "Name" %>
     </div>
-    
-    <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email,class: "form-control", placeholder: "Email" %>
+    <div class="panel panel-footer">
+       <%= current_user.email %>
     </div>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
