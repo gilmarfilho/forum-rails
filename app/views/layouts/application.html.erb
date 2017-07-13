@@ -32,6 +32,9 @@
                 <%= current_user.email %><span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
+                <% if is_admin %>
+                  <li><%= link_to 'Reports', reports_path %></li>
+                <% end %>
                 <li><%= link_to 'My Account', edit_user_registration_path %></li>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               </ul>

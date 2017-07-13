@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     @comments = Comment.where(post_id: @post.id).order(:created_at).page(params[:page]).per(5)
     @comment = Comment.new
     @comment.post = @post
+    @report = Report.new
   end
 
   def new
