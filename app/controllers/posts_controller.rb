@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new, :like, :dislike]
   before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :dislike, :unlike, :undislike]
 
+  def search
+    redirect_post
+  end
+
   def index
     @posts = Post.all
     if params[:search]

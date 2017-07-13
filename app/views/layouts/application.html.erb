@@ -20,7 +20,7 @@
         <form class= "form-inline">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-            <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+            <%= form_tag(search_path, :method => "get", id: "search-form") do %>
               <%= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control mr-sm-2" %>
               <%= button_tag(type: "submit", class: "btn btn-primary my-2 my-sm-0", style: "margin-right: 15px;") do %>
                 <span class="glyphicon glyphicon-search"></span>

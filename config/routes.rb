@@ -13,4 +13,5 @@ Rails.application.routes.draw do
         get "report", to: 'reports#create'
     end
   end
+  get "search", to: 'posts#search'
 end
