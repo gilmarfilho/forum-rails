@@ -25,7 +25,7 @@
       <tr>
         <td>
           <%= link_to post.title, post, class: "btn-link h3" %></br>
-          <% post.tags.each do |tag| %>
+          <% tag_slicer(post.tags).each do |tag| %>
             <span class="label label-primary"><%=link_to tag.name , "/posts/hashtag/#{tag.name}".html_safe %></span>
           <% end %>
         </td>

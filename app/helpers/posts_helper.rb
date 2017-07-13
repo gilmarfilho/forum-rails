@@ -17,4 +17,8 @@ module PostsHelper
       content.gsub(/#\w+/){|word| link_to word, "/posts/hashtag/#{word.downcase.delete('#')}"}.html_safe
   end
 
+  def tag_slicer(tags)
+    tags[0..5]
+  end
+
 end
