@@ -25,8 +25,9 @@
       <tr>
         <td>
           <%= link_to post.title, post, class: "btn-link h3" %></br>
-          <span class="label label-primary">tech</span>
-          <span class="label label-primary">new</span>
+          <% post.tags.each do |tag| %>
+            <span class="label label-primary"><%=link_to tag.name , "/posts/hashtag/#{tag.name}".html_safe %></span>
+          <% end %>
         </td>
         <td><%= gravatar_for post.user, size: 50 %>  <%= post.user.email %></td>
         <td><%= likes(post) %></td>
