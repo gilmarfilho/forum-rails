@@ -6,9 +6,9 @@
     <%= devise_error_messages! %>
   
       <div class="field">
-        <%= f.label :name %>
-        <em>*  (Displayed name)</em>
-        <input type="nome" class="form-control" id="nome", placeholder = "Name">
+        <%= f.label :Name %>
+        <em>*</em>
+        <%= f.text_field :nameUsers, class: "form-control", placeholder: "Name" %>
     </div>
     
     <div class="field">
@@ -30,14 +30,19 @@
       <em>*</em>
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password" %>
     </div>
-
- <div class="form-group">
-    <label for="sex">Sexo:</label>
-    <select id="sex" class="form-control">
-    <option value="one">Masculino</option>
-    <option value="two">Ferminio</option>
-    </select>
-  </div>
+    
+  
+    <div class="field">
+      <%= f.label :BirthDate %>
+      <em>*</em>
+      <%= f.date_field :birthDate, class: "form-control" %>
+    </div>
+    
+ <div class="field">
+      <%= f.label :sex %>
+      <em>*</em>
+      <%= f.select :sex, [['Masculino', true], ['Feminino', false]],{} ,class: 'form-control' %>
+    </div>
   
     <div class="actions">
       <%= f.submit "Sign up", class: "btn btn-primary" %>

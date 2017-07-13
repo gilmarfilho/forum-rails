@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/posts/hashtag/:name', to:'posts#hashtags'
   resources :comments, only: [:create, :destroy, :update]
   resources :reports, only: [:index, :destroy]
-  devise_for :users
+  devise_for :users , :controllers => { registrations: 'registrations' }
   resources :posts do
     member do
         put "like", to: 'posts#like'

@@ -5,6 +5,11 @@ module UsersHelper
       current_user.is_admin
     end
   end
+  def is_Man()
+    if current_user
+      current_user.sex
+    end
+  end
   #Gets a gravatar image
   def gravatar_for(user, size: 80)
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)

@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
+  validates :sex, presence: true
+  validates :nameUsers, presence: true
+  validates :birthDate, presence: true
+  
   has_many :posts
   has_many :evaluations
   has_many :comments, through: :posts
