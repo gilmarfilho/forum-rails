@@ -49,7 +49,7 @@ $(function () {
     <div class="row">
       <div class="col-sm-12">
         <p class="h3">
-          <%= simple_format @post.content %>
+          <%= simple_format render_with_hashtags(@post.content) %>
         </p>
         <br>
       </div>

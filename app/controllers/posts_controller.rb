@@ -20,6 +20,11 @@ class PostsController < ApplicationController
     @comment.post = @post
   end
 
+  def hashtags
+    tag = Tag.find_by(name: params[:name])
+    @posts = tag.posts.order(:created_at).page(params[:page]).per(5)
+  end
+
   def new
     @post = Post.new
   end
@@ -50,7 +55,7 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
   end
-  
+
   def like
     if Evaluation.exists?(user: current_user, post: @post)
       @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
@@ -62,11 +67,11 @@ class PostsController < ApplicationController
     @evaluation.like = true
     @evaluation.save!
   end
-  
+
   def unlike
     @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
   end
-  
+
   def dislike
     if Evaluation.exists?(user: current_user, post: @post)
       @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
@@ -78,7 +83,7 @@ class PostsController < ApplicationController
     @evaluation.dislike = true
     @evaluation.save!
   end
-  
+
   def undislike
     @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
   end

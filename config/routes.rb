@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'posts#index'
+  get '/posts/hashtag/:name', to:'posts#hashtags'
   resources :comments, only: [:create, :destroy, :update]
   devise_for :users
   resources :posts do
