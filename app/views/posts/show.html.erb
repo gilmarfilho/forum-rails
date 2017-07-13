@@ -43,7 +43,11 @@ $(function () {
           <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_post_path(@post), class: "btn btn-default" %>
           <%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default", style: "margin-right: 4px;" %>
         <% end %>
-        <%= link_to '<span class="glyphicon glyphicon-exclamation-sign"></span>'.html_safe, report_post_path(@post), data: { confirm: 'Are you sure?' }, class: "btn btn-warning pull-right" %>
+        <% if user_signed_in? %>
+          <%= link_to '<span class="glyphicon glyphicon-exclamation-sign"></span>'.html_safe, report_post_path(@post), data: { confirm: 'Are you sure?' }, class: "btn btn-warning pull-right" %>
+        <% else %>
+          <a tabindex="0" class="btn btn-warning pull-right" role="button" data-toggle="popover" data-trigger="focus" title="You need to sign in first" data-content="To give us your feedback about this post you need to sign in." data-placement="left"><span class="glyphicon glyphicon-exclamation-sign"></span></a>
+        <% end %>
       </div>
     </div>
     <div class="row">
