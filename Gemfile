@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'twitter-bootstrap-rails'
+gem 'faker', '1.6.6'
 gem 'devise'
 gem 'tzinfo-data'
 gem 'kaminari'
