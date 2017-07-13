@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :sex, presence: true
   validates :nameUsers, presence: true
   validates :birthDate, presence: true
+  validates :aboutYou, length: { maximum: 200 }
   
   has_many :posts
   has_many :evaluations
