@@ -1,35 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<script>
-$("#like").click(function(){
-  var likesNumber = document.getElementById("likesNumber").innerHTML;
-  var likesNumber = parseInt(likesNumber) + 1
-  document.getElementById("likesNumber").innerHTML = likesNumber;
-});
-
-$("#unlike").click(function(){
-  var likesNumber = document.getElementById("likesNumber").innerHTML;
-  var likesNumber = parseInt(likesNumber) - 1
-  document.getElementById("likesNumber").innerHTML = likesNumber;
-});
-
-$("#dislike").click(function(){
-  var dislikesNumber = document.getElementById("dislikesNumber").innerHTML;
-  var dislikesNumber = parseInt(dislikesNumber) + 1
-  document.getElementById("dislikesNumber").innerHTML = dislikesNumber;
-});
-
-$("#undislike").click(function(){
-  var dislikesNumber = document.getElementById("dislikesNumber").innerHTML;
-  var dislikesNumber = parseInt(dislikesNumber) - 1
-  document.getElementById("dislikesNumber").innerHTML = dislikesNumber;
-});
-
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-</script>
-
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
