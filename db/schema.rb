@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713004220) do
+ActiveRecord::Schema.define(version: 20170713054002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,25 @@ ActiveRecord::Schema.define(version: 20170713004220) do
   add_index "evaluations", ["post_id"], name: "index_evaluations_on_post_id", using: :btree
   add_index "evaluations", ["user_id"], name: "index_evaluations_on_user_id", using: :btree
 
+  create_table "names", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "MODEL"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "names", ["email"], name: "index_names_on_email", unique: true, using: :btree
+  add_index "names", ["reset_password_token"], name: "index_names_on_reset_password_token", unique: true, using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -50,6 +69,14 @@ ActiveRecord::Schema.define(version: 20170713004220) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+  create_table "posts_tags", id: false, force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  add_index "posts_tags", ["post_id"], name: "index_posts_tags_on_post_id", using: :btree
+  add_index "posts_tags", ["tag_id"], name: "index_posts_tags_on_tag_id", using: :btree
+
   create_table "reports", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -59,6 +86,12 @@ ActiveRecord::Schema.define(version: 20170713004220) do
   add_index "reports", ["comment_id"], name: "index_reports_on_comment_id", using: :btree
   add_index "reports", ["post_id"], name: "index_reports_on_post_id", using: :btree
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -74,9 +107,14 @@ ActiveRecord::Schema.define(version: 20170713004220) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.boolean  "is_admin"
+    t.string   "name_field"
+    t.string   "name"
+    t.string   "nameUser"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "posts_tags", "posts"
+  add_foreign_key "posts_tags", "tags"
 end
