@@ -64,8 +64,9 @@ class PostsController < ApplicationController
   def like
     if Evaluation.exists?(user: current_user, post: @post)
       @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
+    else
+      @evaluation = Evaluation.new
     end
-    @evaluation = Evaluation.new
     @evaluation.user = current_user
     @evaluation.post = @post
     @evaluation.dislike = false
@@ -80,8 +81,9 @@ class PostsController < ApplicationController
   def dislike
     if Evaluation.exists?(user: current_user, post: @post)
       @evaluation = Evaluation.where(user: current_user, post: @post).destroy_all
+    else
+      @evaluation = Evaluation.new
     end
-    @evaluation = Evaluation.new
     @evaluation.user = current_user
     @evaluation.post = @post
     @evaluation.like = false
