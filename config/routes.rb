@@ -13,5 +13,4 @@ Rails.application.routes.draw do
         get "report", to: 'reports#create'
     end
   end
-  resources :profile
 end
