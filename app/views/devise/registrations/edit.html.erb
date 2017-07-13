@@ -43,13 +43,10 @@
     
       <%= f.label :sex %>
          <div class="panel panel-footer">
-      <% if is_Man %>
-          <p>Masculino</p>
-      <% end %>
-      <% if ! is_Man %>
-        <p>Feminino</p>
-      <% end %>
+      <%= current_user.sex %>
     </div>
+    
+    
     <div class = "field">
     <%= f.label :aboutYou%>
     <%= f.text_area :aboutYou, class: "form-control", placeholder: "Type about yourself" %>
