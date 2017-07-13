@@ -64,15 +64,15 @@ $(function () {
       <% if user_signed_in? %>
         <span id="likesNumber"><%= likes(@post) %></span>
         <% if !already_liked(@post) %>
-          <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, like_post_path(@post), method: :put, remote: true, id: "like", class: 'btn btn-success' %>
+          <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, like_post_path(@post), method: :put, id: "like", class: 'btn btn-success' %>
         <% else %>
           <%= link_to '<span class="glyphicon glyphicon-thumbs-up"></span>'.html_safe, unlike_post_path(@post), method: :put, remote: true, id: "unlike", class: 'btn btn-success' %>
         <% end %>
         <span id="dislikesNumber"><%= dislikes(@post) %></span>
         <% if !already_disliked(@post) %>
-          <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, dislike_post_path(@post), method: :put, remote: true, id: "dislike", class: 'btn btn-danger' %>
+          <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, dislike_post_path(@post), method: :put, id: "dislike", class: 'btn btn-danger' %>
         <% else %>
-          <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, undislike_post_path(@post), method: :put, remote: true, id: "undislike", class: 'btn btn-danger' %>
+          <%= link_to '<span class="glyphicon glyphicon-thumbs-down"></span>'.html_safe, undislike_post_path(@post), method: :put, id: "undislike", class: 'btn btn-danger' %>
         <% end %>
       <% else %>
         <span id="likesNumber"><%= likes(@post) %></span>
