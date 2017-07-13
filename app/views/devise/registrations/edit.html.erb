@@ -50,7 +50,11 @@
         <p>Feminino</p>
       <% end %>
     </div>
-  
+    <div class = "field">
+    <%= f.label :aboutYou%>
+    <%= f.text_area :aboutYou, class: "form-control", placeholder: "Type about yourself" %>
+    </div>
+    
     <div class="actions">
       <%= f.submit "Update", class: "btn btn-default" %>
     </div>

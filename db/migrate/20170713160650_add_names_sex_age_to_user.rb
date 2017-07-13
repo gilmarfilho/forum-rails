@@ -3,5 +3,6 @@ class AddNamesSexAgeToUser < ActiveRecord::Migration
      add_column :users, :sex, :boolean
      add_column :users, :nameUsers, :string
      add_column :users, :birthDate, :string
+     add_column :users, :aboutYou, :string
   end
 end
